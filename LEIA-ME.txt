@@ -1,0 +1,11 @@
+MEU FINANCEIRO - FIREBASE
+
+1. Em Firebase Authentication > Configurações > Domínios autorizados, adicione SEUUSUARIO.github.io.
+2. Em GitHub, envie os arquivos desta pasta para a raiz do repositório (substitua os anteriores).
+3. Abra o endereço do GitHub Pages e entre com Google.
+4. Faça backup ANTES de importar ou migrar dados locais.
+5. Migre os dados do dispositivo que possui os lançamentos mais completos.
+6. Não faça lançamentos simultâneos em dispositivos diferentes: esta primeira versão sincroniza um documento completo e usa a última gravação como referência.
+7. O login via popup pode sofrer bloqueios no Safari; permita pop-ups e teste o acesso.
+8. O modo offline mantém dados locais; sincronização requer internet.
+9. Regras Firestore: match /users/{userId}/{document=**} { allow read, write: if request.auth != null && request.auth.uid == userId; }
