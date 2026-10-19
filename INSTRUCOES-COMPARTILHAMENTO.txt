@@ -1,0 +1,25 @@
+MEU FINANCEIRO - COMPARTILHAMENTO (GitHub Pages + Firebase)
+
+ANTES DE ATUALIZAR
+1. Abra o app atual no computador, entre com Google e faça backup JSON.
+2. No Firebase Console > Firestore Database > Regras, substitua as regras pelo conteudo de firestore.rules e clique em Publicar.
+   Sem essas regras, o compartilhamento nao funcionara.
+3. No GitHub (repositorio larissamorenii/meufinanceiro), envie os arquivos da pasta extraida para a RAIZ do repositorio, substituindo index.html, firebase-sync.js e sw.js. Mantenha icons/ e manifest.webmanifest.
+4. Aguarde o GitHub Pages atualizar; feche e reabra o PWA no iPhone se houver cache.
+
+COMO COMPARTILHAR
+1. A pessoa convidada abre o mesmo link e faz login com a propria conta Google.
+2. Na secao Compartilhamento, copia o codigo UID da conta dela e envia para voce.
+3. Na sua conta, cole o UID no campo e clique em Conceder acesso total.
+4. A pessoa convidada atualiza a pagina, abre 'Acessar contas' e escolhe sua conta compartilhada.
+5. Para retirar o acesso, clique em Revogar na lista de pessoas autorizadas.
+
+IMPORTANTE
+- Nao compartilhe senhas, nem envie dados financeiros pessoais ao repositorio publico.
+- O e-mail digitado e apenas uma etiqueta; a permissao depende do UID autenticado.
+- O compartilhamento permite visualizar, criar, editar e excluir TODOS os dados financeiros.
+- O documento financeiro original /users/SEU_UID/finance/data nao e movido nem apagado.
+- O aplicativo atual salva os dados financeiros num unico documento: edicoes simultaneas em aparelhos diferentes podem sobrescrever dados. Evite editar ao mesmo tempo.
+- Depois de revogar o acesso, registros que ja foram carregados no dispositivo convidado podem permanecer em cache local. O app nao permite garantir apagamento remoto desses dados.
+- Firestore tem limites de tamanho de documento (~1 MiB); para uso mais intensivo, migrar para documentos individuais por lancamento.
+- Nao inclua firestore.rules no site por necessidade tecnica; ele e fornecido para copiar e publicar no Console Firebase.

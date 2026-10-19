@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function loggedIn() { return request.auth != null; }
+    function isOwner(owner) { return loggedIn() && request.auth.uid == owner; }
+    function isMember(owner) {
+      return loggedIn() &&
+        exists(/databases/$(database)/documents/users/$(owner)/members/$(request.auth.uid));
+    }
+    match /users/{owner}/finance/{financeDoc} {
+      allow read, write: if isOwner(owner) || isMember(owner);
+    }
+    match /users/{owner}/members/{guest} {
+      allow read: if isOwner(owner) || (loggedIn() && request.auth.uid == guest);
+      allow create, update, delete: if isOwner(owner);
+    }
+    match /access/{guest}/owners/{owner} {
+      allow read: if loggedIn() && (request.auth.uid == guest || request.auth.uid == owner);
+      allow create, update, delete: if isOwner(owner);
+    }
+  }
+}
